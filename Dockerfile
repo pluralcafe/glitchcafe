@@ -1,4 +1,4 @@
-FROM node:8.11.3-alpine as node
+FROM node:alpine as node
 FROM ruby:2.4-alpine
 
 LABEL maintainer="https://github.com/pluralcafe/mastodon" \
@@ -85,6 +85,6 @@ VOLUME /mastodon/public/system
 USER mastodon
 
 ENV LD_PRELOAD=/lib/stack-fix.so
-RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder bundle exec rails assets:precompile
+RUN OTP_SECRET=_ SECRET_KEY_BASE=_ bundle exec rails assets:precompile
 
 ENTRYPOINT ["/sbin/tini", "--"]
