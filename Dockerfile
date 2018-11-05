@@ -1,4 +1,4 @@
-FROM node:alpine as node
+FROM node:10-alpine as node
 FROM ruby:2.4-alpine
 
 LABEL maintainer="https://github.com/pluralcafe/mastodon" \
