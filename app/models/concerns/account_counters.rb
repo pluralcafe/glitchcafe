@@ -16,7 +16,6 @@ module AccountCounters
            :followers_count=,
            :increment_count!,
            :decrement_count!,
-           :last_status_at,
            to: :account_stat
 
   def account_stat
