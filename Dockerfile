@@ -1,5 +1,5 @@
 FROM node:10-alpine as node
-FROM ruby:2.4-alpine
+FROM ruby:2.6-alpine
 
 LABEL maintainer="https://github.com/pluralcafe/mastodon" \
       description="Mastodon Glitch Edition"
