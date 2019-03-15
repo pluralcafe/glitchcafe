@@ -105,7 +105,8 @@ const startWorker = (workerId) => {
     pgConfigs.development.ssl = true;
     pgConfigs.production.ssl  = true;
   }
-  const app    = express();
+
+  const app = express();
   app.set('trusted proxy', process.env.TRUSTED_PROXY_IP || 'loopback,uniquelocal');
 
   const pgPool = new pg.Pool(Object.assign(pgConfigs[env], dbUrlToConfig(process.env.DATABASE_URL)));
