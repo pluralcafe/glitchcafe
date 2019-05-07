@@ -125,6 +125,7 @@
       cursor: default;
       pointer-events: none;
       transition: all 100ms linear;
+      transition-property: color, transform, opacity;
     }
 
     .fa-search {
@@ -185,12 +186,6 @@
 }
 
 .drawer--results {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0;
   background: $ui-base-color;
   overflow-x: hidden;
   overflow-y: auto;

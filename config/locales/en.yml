@@ -252,6 +252,7 @@ en:
       feature_timeline_preview: Timeline preview
       features: Features
       hidden_service: Federation with hidden services
+      keybase: Keybase integration
       open_reports: open reports
       recent_users: Recent users
       search: Full-text search
@@ -269,6 +270,7 @@ en:
       created_msg: Domain block is now being processed
       destroyed_msg: Domain block has been undone
       domain: Domain
+      existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Create block
         hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
@@ -397,6 +399,9 @@ en:
       custom_css:
         desc_html: Modify the look with CSS loaded on every page
         title: Custom CSS
+      enable_keybase:
+        desc_html: Allow your users to prove their identity via keybase
+        title: Enable keybase integration
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
         title: Hero image
@@ -434,6 +439,12 @@ en:
       show_known_fediverse_at_about_page:
         desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
         title: Show known fediverse on timeline preview
+      show_reblogs_in_public_timelines:
+        desc_html: Show public boosts of public toots in local and public timelines.
+        title: Show boosts in public timelines
+      show_replies_in_public_timelines:
+        desc_html: In addition to public self-replies (threads), show public replies in local and public timelines.
+        title: Show replies in public timelines
       show_staff_badge:
         desc_html: Show a staff badge on a user page
         title: Show staff badge
