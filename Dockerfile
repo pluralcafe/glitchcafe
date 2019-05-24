@@ -18,7 +18,7 @@ RUN	echo "Etc/UTC" > /etc/localtime && \
 	make install
 
 # Install jemalloc
-ENV JE_VER="5.1.0"
+ENV JE_VER="5.2.0"
 RUN apt update && \
 	apt -y install autoconf && \
 	cd ~ && \
@@ -31,7 +31,7 @@ RUN apt update && \
 	make install_bin install_include install_lib
 
 # Install ruby
-ENV RUBY_VER="2.6.2"
+ENV RUBY_VER="2.6.3"
 ENV CPPFLAGS="-I/opt/jemalloc/include"
 ENV LDFLAGS="-L/opt/jemalloc/lib/"
 RUN apt update && \
