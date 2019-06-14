@@ -21,9 +21,10 @@ const LinkFooter = () => (
     <p>
       <FormattedMessage
         id='getting_started.open_source_notice'
-        defaultMessage='Glitchsoc is open source software, a friendly fork of {Mastodon}. You can contribute or report issues on GitHub at {github}.'
+        defaultMessage='GlitchCafe is open source software, based on {Glitchsoc} which is a friendly fork of {Mastodon}. You can contribute or report issues on GitHub at {github}.'
         values={{
-          github: <span><a href='https://github.com/glitch-soc/mastodon' rel='noopener' target='_blank'>glitch-soc/mastodon</a> (v{version})</span>,
+          github: <span><a href='https://github.com/pluralcafe/mastodon' rel='noopener' target='_blank'>pluralcafe/mastodon</a> (v{version})</span>,
+      Glitchsoc: <a href='https://github.com/glitch-soc/mastodon' rel='noopener' target='_blank'>glitch-soc/mastodon</a>,
           Mastodon: <a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>Mastodon</a> }}
       />
     </p>
