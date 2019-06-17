@@ -1,10 +1,10 @@
-FROM ubuntu:18.04 as build-dep
+FROM debian:buster-slim as build-dep
 
 # Use bash for the shell
 SHELL ["bash", "-c"]
 
 # Install Node
-ENV NODE_VER="10.15.3"
+ENV NODE_VER="10.16.0"
 RUN	echo "Etc/UTC" > /etc/localtime && \
 	apt update && \
 	apt -y install wget make gcc g++ python && \
@@ -63,7 +63,7 @@ RUN cd /opt/mastodon && \
 	bundle install -j$(nproc) --deployment --without development test && \
 	yarn install --pure-lockfile
 
-FROM ubuntu:18.04
+FROM debian:buster-slim
 
 # Copy over all the langs needed for runtime
 COPY --from=build-dep /opt/node /opt/node
@@ -118,8 +118,9 @@ USER mastodon
 
 # Precompile assets
 RUN cd ~ && \
-	OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
-	yarn cache clean
+	OTP_SECRET=_ SECRET_KEY_BASE=_ rails assets:precompile && \
+	yarn cache clean && \
+	rm -rf /mastodon/tmp/*
 
 # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
