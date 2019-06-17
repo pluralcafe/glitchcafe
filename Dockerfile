@@ -120,7 +120,7 @@ USER mastodon
 RUN cd ~ && \
 	OTP_SECRET=_ SECRET_KEY_BASE=_ rails assets:precompile && \
 	yarn cache clean && \
-	rm -rf /mastodon/tmp/*
+	rm -rf /opt/mastodon/tmp/*
 
 # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
