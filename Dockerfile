@@ -1,4 +1,4 @@
-FROM debian:buster-slim as build-dep
+FROM debian:stretch as build-dep
 
 # Use bash for the shell
 SHELL ["bash", "-c"]
@@ -63,7 +63,7 @@ RUN cd /opt/mastodon && \
 	bundle install -j$(nproc) --deployment --without development test && \
 	yarn install --pure-lockfile
 
-FROM debian:buster-slim
+FROM debian:stretch-slim
 
 # Copy over all the langs needed for runtime
 COPY --from=build-dep /opt/node /opt/node
