@@ -1,4 +1,4 @@
-FROM debian:stretch as build-dep
+FROM ubuntu:18.04 as build-dep
 
 # Use bash for the shell
 SHELL ["bash", "-c"]
