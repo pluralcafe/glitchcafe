@@ -63,7 +63,7 @@ RUN cd /opt/mastodon && \
 	bundle install -j$(nproc) --deployment --without development test && \
 	yarn install --pure-lockfile
 
-FROM debian:stretch-slim
+FROM ubuntu:18.04
 
 # Copy over all the langs needed for runtime
 COPY --from=build-dep /opt/node /opt/node
