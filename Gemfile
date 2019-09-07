@@ -15,7 +15,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.3'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.46', require: false
+gem 'aws-sdk-s3', '~> 1.48', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -24,14 +24,14 @@ gem 'streamio-ffmpeg', '~> 3.0'
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
-gem 'addressable', '~> 2.6'
+gem 'addressable', '~> 2.7'
 gem 'bootsnap', '~> 1.4', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.6'
 gem 'iso-639'
 gem 'chewy', '~> 5.0'
 gem 'cld3', '~> 3.2.4'
-gem 'devise', '~> 4.6'
+gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 3.1'
 
 group :pam_authentication, optional: true do
@@ -43,6 +43,7 @@ gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.9'
 
+gem 'discard', '~> 1.1'
 gem 'doorkeeper', '~> 5.1'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
@@ -93,7 +94,7 @@ gem 'tzinfo-data', '~> 1.2019'
 gem 'webpacker', '~> 4.0'
 gem 'webpush'
 
-gem 'json-ld', git: 'https://github.com/ruby-rdf/json-ld.git', ref: '345b7a5733308af827e8491d284dbafa9128d7a2'
+gem 'json-ld', git: 'https://github.com/ruby-rdf/json-ld.git', ref: 'e742697a0906e74e8bb777ef98137bc3955d981d'
 gem 'json-ld-preloaded', '~> 3.0'
 gem 'rdf-normalize', '~> 0.3'
 
@@ -115,12 +116,12 @@ end
 group :test do
   gem 'capybara', '~> 3.28'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.1'
+  gem 'faker', '~> 2.2'
   gem 'microformats', '~> 4.1'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
   gem 'simplecov', '~> 0.17', require: false
-  gem 'webmock', '~> 3.6'
+  gem 'webmock', '~> 3.7'
   gem 'parallel_tests', '~> 2.29'
 end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_15_225426) do
+ActiveRecord::Schema.define(version: 2019_09_01_040524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -657,7 +657,9 @@ ActiveRecord::Schema.define(version: 2019_08_15_225426) do
     t.boolean "local_only"
     t.bigint "poll_id"
     t.string "content_type"
-    t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20180106", order: { id: :desc }
+    t.datetime "deleted_at"
+    t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
+    t.index ["id", "account_id"], name: "index_statuses_local_20190824", order: { id: :desc }, where: "((local OR (uri IS NULL)) AND (deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
     t.index ["in_reply_to_account_id"], name: "index_statuses_on_in_reply_to_account_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id", "account_id"], name: "index_statuses_on_reblog_of_id_and_account_id"
@@ -675,14 +677,14 @@ ActiveRecord::Schema.define(version: 2019_08_15_225426) do
     t.string "name", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "score"
     t.boolean "usable"
     t.boolean "trendable"
     t.boolean "listable"
     t.datetime "reviewed_at"
     t.datetime "requested_review_at"
     t.datetime "last_status_at"
-    t.datetime "last_trend_at"
+    t.float "max_score"
+    t.datetime "max_score_at"
     t.index "lower((name)::text)", name: "index_tags_on_name_lower", unique: true
   end
 
