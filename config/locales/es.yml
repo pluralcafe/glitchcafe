@@ -56,6 +56,7 @@ es:
     media: Multimedia
     moved_html: "%{name} se ha trasladado a %{new_profile_link}:"
     network_hidden: Esta información no está disponible
+    never_active: Nunca
     nothing_here: "¡No hay nada aquí!"
     people_followed_by: Usuarios a quien %{name} sigue
     people_who_follow: Usuarios que siguen a %{name}
@@ -222,6 +223,7 @@ es:
       deleted_status: "(estado borrado)"
       title: Log de auditoría
     custom_emojis:
+      assign_category: Asignar categoría
       by_domain: Dominio
       copied_msg: Copia local del emoji creada con éxito
       copy: Copiar
@@ -242,6 +244,7 @@ es:
       shortcode: Código de atajo
       shortcode_hint: Al menos 2 caracteres, solo caracteres alfanuméricos y guiones bajos
       title: Emojis personalizados
+      uncategorized: Sin clasificar
       unlisted: Sin listar
       update_failed_msg: No se pudo actualizar ese emoji
       updated_msg: "¡Emoji actualizado con éxito!"
@@ -489,6 +492,7 @@ es:
         delete: Eliminar
         nsfw_off: Marcar contenido como no sensible
         nsfw_on: Marcar contenido como sensible
+      deleted: Eliminado
       failed_to_execute: Falló al ejecutar
       media:
         title: Multimedia
@@ -609,28 +613,22 @@ es:
       x_months: "%{count}m"
       x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: "¡Buen intento, hackers! Contraseña incorrecta"
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
-    description_html: Esto removerá el contenido de tu cuenta y la desactivará <strong>permanente e irrevesiblemente</strong>. Tu nombre de usuario quedará reservado para prevenir futuros robos de identidad.
     proceed: Eliminar cuenta
     success_msg: Tu cuenta se eliminó con éxito
-    warning_html: Se garantiza únicamente la eliminación del contenido de esta instancia. El contenido que se haya compartido extensamente dejará sus huellas. Los servidores fuera de línea y los que se hayan desuscrito de tus actualizaciones ya no actualizarán sus bases de datos.
-    warning_title: Disponibilidad diseminada del contenido
   directories:
     directory: Directorio de perfiles
-    enabled: Actualmente está listado en el directorio.
-    enabled_but_waiting: Ha optado por ser listado en el directorio, pero aún no cumple con el número mínimo de seguidores (%{min_followers}) para ser listado.
     explanation: Descubre usuarios según sus intereses
     explore_mastodon: Explorar %{title}
-    how_to_enable: Usted no está registrado por el directorio. Puede registrar por abajo. ¡Utilice hashtags en su bio para aparecer bajo hashtags específicos!
-    people:
-      one: "%{count} persona"
-      other: "%{count} personas"
+  domain_blocks:
+    domain: Dominio
   domain_validator:
     invalid_domain: no es un nombre de dominio válido
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': No tienes permiso para acceder a esta página.
     '404': La página que estabas buscando no existe.
+    '406': This page is not available in the requested format.
     '410': La página que estabas buscando no existe más.
     '422':
       content: Verificación de seguridad fallida. ¿Estás bloqueando algunas cookies?
@@ -639,6 +637,7 @@ es:
     '500':
       content: Lo sentimos, algo ha funcionado mal por nuestra parte.
       title: Esta página no es correcta
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Para usar la aplicación web de Mastodon, por favor activa Javascript. Alternativamente, prueba alguna de las <a href="%{apps_path}">aplicaciones nativas</a> para Mastodon para tu plataforma.
   existing_username_validator:
     not_found: no pudo encontrar un usuario local con ese nombre de usuario
@@ -682,6 +681,7 @@ es:
     developers: Desarrolladores
     more: Mas…
     resources: Recursos
+    trending_now: Tendencia ahora
   generic:
     all: Todos
     changes_saved_msg: "¡Cambios guardados con éxito!"
