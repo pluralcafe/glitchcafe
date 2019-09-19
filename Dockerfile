@@ -112,14 +112,14 @@ ENV NODE_ENV="production"
 ENV RAILS_SERVE_STATIC_FILES="true"
 ENV BIND="0.0.0.0"
 
+# Precompile assets
+RUN su - mastodon -c "cd ~ && \
+	OTP_SECRET=_ SECRET_KEY_BASE=_ rails assets:precompile && \
+	yarn cache clean" && \
+	rm -rf /opt/mastodon/tmp/*
+
 # Set the run user
 USER mastodon
-
-# Precompile assets
-RUN cd ~ && \
-	OTP_SECRET=_ SECRET_KEY_BASE=_ rails assets:precompile && \
-	yarn cache clean && \
-	rm -rf /opt/mastodon/tmp/*
 
 # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
