@@ -115,7 +115,7 @@ ENV BIND="0.0.0.0"
 USER mastodon
 
 # Precompile assets
-RUN OTP_SECRET=_ SECRET_KEY_BASE=_ rails assets:precompile && yarn cache clean
+RUN cd ~ && OTP_SECRET=_ SECRET_KEY_BASE=_ rails assets:precompile && yarn cache clean
 
 # Empty temporary files
 USER root
