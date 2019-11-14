@@ -38,7 +38,7 @@ export default class Trends extends ImmutablePureComponent {
       <div className='getting-started__trends'>
         <h4><FormattedMessage id='trends.trending_now' defaultMessage='Trending now' /></h4>
 
-        {trends.take(3).map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
+        {trends.take(1).map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
       </div>
     );
   }
