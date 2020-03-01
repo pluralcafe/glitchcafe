@@ -18,13 +18,14 @@ class FollowService < BaseService
     if source_account.following?(target_account)
       # We're already following this account, but we'll call follow! again to
       # make sure the reblogs status is set correctly.
-      return source_account.follow!(target_account, reblogs: reblogs)
+      source_account.follow!(target_account, reblogs: reblogs)
+      return
     elsif source_account.requested?(target_account)
       # This isn't managed by a method in AccountInteractions, so we modify it
       # ourselves if necessary.
       req = source_account.follow_requests.find_by(target_account: target_account)
       req.update!(show_reblogs: reblogs)
-      return req
+      return
     end
 
     ActivityTracker.increment('activity:interactions')

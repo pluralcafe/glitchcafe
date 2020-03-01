@@ -66,7 +66,8 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
     @status = Status.find(params[:status_id])
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
-    not_found
+    # Reraise in order to get a 404 instead of a 403 error code
+    raise ActiveRecord::RecordNotFound
   end
 
   def pagination_params(core_params)
