@@ -26,6 +26,8 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def account_statuses
+    return Status.none unless user_signed_in?
+
     statuses = truthy_param?(:pinned) ? pinned_scope : permitted_account_statuses
 
     statuses.merge!(only_media_scope) if truthy_param?(:only_media)
