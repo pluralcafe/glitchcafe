@@ -15,6 +15,7 @@ class Sanitize
       ipfs
       ipns
       ssb
+      gemini
       gopher
       xmpp
       magnet
