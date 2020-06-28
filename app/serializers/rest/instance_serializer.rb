@@ -5,7 +5,8 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   attributes :uri, :title, :short_description, :description, :email,
              :version, :urls, :stats, :thumbnail, :max_toot_chars, :poll_limits,
-             :languages, :registrations, :approval_required, :invites_enabled
+             :languages, :registrations, :approval_required, :invites_enabled,
+             :federation
 
   has_one :contact_account, serializer: REST::AccountSerializer
 
@@ -80,9 +81,26 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     Setting.min_invite_role == 'user'
   end
 
+  def federation
+    {
+      domain_allows: display_allows? ? DomainAllow.all.map { |a| a.slice(:domain) } : [],
+      domain_blocks: display_blocks? ? DomainBlock.all.map { |b| b.slice(:domain, :severity, :reject_media, :reject_reports, :public_comment) } : [],
+    }
+  end
+
   private
 
   def instance_presenter
     @instance_presenter ||= InstancePresenter.new
+  end
+
+  # Monsterfork additions
+
+  def display_allows?
+    Setting.show_domain_allows == 'all' || (Setting.show_domain_allows == 'users' && user_signed_in?)
+  end
+
+  def display_blocks?
+    Setting.show_domain_blocks == 'all' || (Setting.show_domain_blocks == 'users' && user_signed_in?)
   end
 end

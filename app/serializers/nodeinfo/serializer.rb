@@ -3,7 +3,7 @@
 class NodeInfo::Serializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :version, :software, :protocols, :usage, :open_registrations
+  attributes :version, :software, :protocols, :usage, :open_registrations, :metadata
 
   def version
     '2.0'
@@ -37,9 +37,26 @@ class NodeInfo::Serializer < ActiveModel::Serializer
     Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode
   end
 
+  def metadata
+    {
+      domain_allows: display_allows? ? DomainAllow.all.map { |a| a.slice(:domain) } : [],
+      domain_blocks: display_blocks? ? DomainBlock.all.map { |b| b.slice(:domain, :severity, :reject_media, :reject_reports, :public_comment) } : [],
+    }
+  end
+
   private
 
   def instance_presenter
     @instance_presenter ||= InstancePresenter.new
+  end
+
+  # Monsterfork additions
+
+  def display_allows?
+    Setting.show_domain_allows == 'all' || (Setting.show_domain_allows == 'users' && user_signed_in?)
+  end
+
+  def display_blocks?
+    Setting.show_domain_blocks == 'all' || (Setting.show_domain_blocks == 'users' && user_signed_in?)
   end
 end
