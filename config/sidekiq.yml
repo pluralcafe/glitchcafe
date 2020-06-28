@@ -36,3 +36,6 @@
   pghero_scheduler:
     cron: '0 0 * * *'
     class: Scheduler::PgheroScheduler
+  ambassador_scheduler:
+    every: '<%= ENV['AMBASSADOR_DELAY'] || 10 %>m'
+    class: Scheduler::AmbassadorScheduler
