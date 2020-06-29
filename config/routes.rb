@@ -472,6 +472,9 @@ Rails.application.routes.draw do
           resource :action, only: [:create], controller: 'account_actions'
         end
 
+        resource :domain_blocks, only: [:show]
+        resource :domain_allows, only: [:show]
+
         resources :reports, only: [:index, :show] do
           member do
             post :assign_to_self

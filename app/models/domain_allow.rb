@@ -12,6 +12,7 @@
 
 class DomainAllow < ApplicationRecord
   include DomainNormalizable
+  include Paginable
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
