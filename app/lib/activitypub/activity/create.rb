@@ -49,7 +49,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
         @status = find_existing_status
 
-        if @status.nil?
+        if @status.nil? || @options[:update]
           process_status
         elsif @options[:delivered_to_account_id].present?
           postprocess_audience_and_deliver
@@ -74,6 +74,17 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @tags     = []
     @mentions = []
     @params   = {}
+
+    unless @status.nil?
+      process_status_update_params
+      process_tags
+      process_audience
+
+      @status = UpdateStatusService.new.call(@status, @params, @mentions, @tags)
+      resolve_thread(@status)
+      fetch_replies(@status)
+      return @status
+    end
 
     process_status_params
     process_tags
@@ -115,6 +126,19 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         conversation: conversation_from_uri(@object['conversation']),
         media_attachment_ids: process_attachments.take(4).map(&:id),
         poll: process_poll,
+      }
+    end
+  end
+
+  def process_status_update_params
+    @params = begin
+      {
+        text: text_from_content || '',
+        language: detected_language,
+        spoiler_text: converted_object_type? ? '' : (text_from_summary || ''),
+        sensitive: @object['sensitive'] || false,
+        visibility: visibility_from_audience,
+        media_attachment_ids: process_attachments.take(4).map(&:id),
       }
     end
   end
@@ -238,7 +262,21 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
       begin
         href             = Addressable::URI.parse(attachment['url']).normalize.to_s
-        media_attachment = MediaAttachment.create(account: @account, remote_url: href, thumbnail_remote_url: icon_url_from_attachment(attachment), description: attachment['summary'].presence || attachment['name'].presence, focus: attachment['focalPoint'], blurhash: supported_blurhash?(attachment['blurhash']) ? attachment['blurhash'] : nil)
+        media_attachment = MediaAttachment.find_by(account: @account, remote_url: href)
+
+        if media_attachment.nil?
+          media_attachment = MediaAttachment.create(account: @account, remote_url: href, thumbnail_remote_url: icon_url_from_attachment(attachment), description: attachment['summary'].presence || attachment['name'].presence, focus: attachment['focalPoint'], blurhash: supported_blurhash?(attachment['blurhash']) ? attachment['blurhash'] : nil)
+        else
+          updated_description = attachment['summary'].presence || media_attachment[:description].presence || attachment['name'].presence || media_attachment[:name].presence
+          updated_focus = attachment['focalPoint'].presence || media_attachment['focalPoint'].presence
+          updated_blurhash = supported_blurhash?(attachment['blurhash']) ? attachment['blurhash'] : media_attachment[:blurhash]
+
+          media_attachment.update(description: updated_description, focus: updated_focus, blurhash: updated_blurhash)
+
+          media_attachments << media_attachment
+          next
+        end
+
         media_attachments << media_attachment
 
         next if unsupported_media_type?(attachment['mediaType']) || skip_download?

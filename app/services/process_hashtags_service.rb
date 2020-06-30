@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 class ProcessHashtagsService < BaseService
-  def call(status, tags = [])
-    tags    = Extractor.extract_hashtags(status.text) if status.local?
+  def call(status, tags = nil, extra_tags = [])
+    tags ||= extra_tags | (status.local? ? Extractor.extract_hashtags(status.text) : [])
     records = []
 
+    tag_ids = status.tag_ids.to_set
+
     Tag.find_or_create_by_names(tags) do |tag|
+      next if tag_ids.include?(tag.id)
+
       status.tags << tag
       records << tag
 

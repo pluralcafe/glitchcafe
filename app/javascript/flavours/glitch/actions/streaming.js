@@ -16,6 +16,7 @@ import {
 } from './announcements';
 import { fetchFilters } from './filters';
 import { getLocale } from 'mastodon/locales';
+import { resetCompose } from 'flavours/glitch/actions/compose';
 
 const { messages } = getLocale();
 
@@ -58,6 +59,10 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null, 
           break;
         case 'announcement.delete':
           dispatch(deleteAnnouncement(data.payload));
+          break;
+        case 'refresh':
+          dispatch(resetCompose());
+          window.location.reload();
           break;
         }
       },

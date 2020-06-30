@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { isRtl } from '../rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
+import RelativeTimestamp from './relative_timestamp';
 import classnames from 'classnames';
 import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
@@ -180,6 +181,20 @@ export default class StatusContent extends React.PureComponent {
       return null;
     }
 
+    const edited = (status.get('edited') === 0) ? null : (
+      <div className='status__edit-notice'>
+        <FormattedMessage
+          id='status.edited'
+          defaultMessage='{count, plural, one {# edit} other {# edits}} · last update: {updated_at}'
+          key={`edit-${status.get('id')}`}
+          values={{
+            count: status.get('edited'),
+            updated_at: <RelativeTimestamp timestamp={status.get('updated_at')} />,
+          }}
+        />
+      </div>
+    );
+
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const renderReadMore = this.props.onClick && status.get('collapsed');
     const renderViewThread = this.props.showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);
@@ -232,6 +247,7 @@ export default class StatusContent extends React.PureComponent {
             <button tabIndex='0' className={`status__content__spoiler-link ${hidden ? 'status__content__spoiler-link--show-more' : 'status__content__spoiler-link--show-less'}`} onClick={this.handleSpoilerClick}>{toggleText}</button>
           </p>
 
+          {edited}
           {mentionsPlaceholder}
 
           <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} style={directionStyle} dangerouslySetInnerHTML={content} />
@@ -244,6 +260,8 @@ export default class StatusContent extends React.PureComponent {
     } else if (this.props.onClick) {
       const output = [
         <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content'>
+          {edited}
+
           <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} />
 
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
@@ -260,6 +278,8 @@ export default class StatusContent extends React.PureComponent {
     } else {
       return (
         <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle}>
+          {edited}
+
           <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} />
 
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}

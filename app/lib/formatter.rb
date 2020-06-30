@@ -122,8 +122,8 @@ class Formatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
-  def linkify(text)
-    html = encode_and_link_urls(text)
+  def linkify(text, accounts = nil, options = {})
+    html = encode_and_link_urls(text, accounts, options)
     html = simple_format(html, {}, sanitize: false)
     html = html.delete("\n")
 

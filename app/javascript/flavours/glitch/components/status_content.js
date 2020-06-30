@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { isRtl } from 'flavours/glitch/util/rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
+import RelativeTimestamp from 'flavours/glitch/components/relative_timestamp';
 import classnames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
 import { autoPlayGif } from 'flavours/glitch/util/initial_state';
@@ -275,6 +276,20 @@ export default class StatusContent extends React.PureComponent {
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
 
+    const edited = (status.get('edited') === 0) ? null : (
+      <div className='status__edit-notice'>
+        <FormattedMessage
+          id='status.edited'
+          defaultMessage='{count, plural, one {# edit} other {# edits}} · last update: {updated_at}'
+          key={`edit-${status.get('id')}`}
+          values={{
+            count: status.get('edited'),
+            updated_at: <RelativeTimestamp timestamp={status.get('updated_at')} />,
+          }}
+        />
+      </div>
+    );
+
     const content = { __html: status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
     const directionStyle = { direction: 'ltr' };
@@ -340,6 +355,7 @@ export default class StatusContent extends React.PureComponent {
             </button>
           </p>
 
+          {edited}
           {mentionsPlaceholder}
 
           <div className={`status__content__spoiler ${!hidden ? 'status__content__spoiler--visible' : ''}`}>
@@ -366,6 +382,7 @@ export default class StatusContent extends React.PureComponent {
           tabIndex='0'
           ref={this.setRef}
         >
+          {edited}
           <div
             ref={this.setContentsRef}
             key={`contents-${tagLinks}-${rewriteMentions}`}
@@ -384,6 +401,7 @@ export default class StatusContent extends React.PureComponent {
           tabIndex='0'
           ref={this.setRef}
         >
+          {edited}
           <div ref={this.setContentsRef} key={`contents-${tagLinks}`} className='status__content__text' dangerouslySetInnerHTML={content} tabIndex='0' />
           {media}
         </div>

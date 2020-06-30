@@ -20,12 +20,20 @@ class PostStatusService < BaseService
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
   # @option [Boolean] :with_rate_limit
+  # @option [Status] :status Edit an existing status
+  # @option [Enumerable] :mentions Optional array of Mentions to include
+  # @option [Enumerable] :tags Option array of tag names to include
   # @return [Status]
   def call(account, options = {})
     @account     = account
     @options     = options
     @text        = @options[:text] || ''
     @in_reply_to = @options[:thread]
+
+    raise Mastodon::NotPermittedError if different_author?
+
+    @tag_names   = (@options[:tags] || []).select { |tag| tag =~ /\A(#{Tag::HASHTAG_NAME_RE})\z/i }
+    @mentions    = @options[:mentions] || []
 
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
@@ -34,6 +42,8 @@ class PostStatusService < BaseService
 
     if scheduled?
       schedule_status!
+    elsif @options[:status].present? && status_exists?
+      update_status!
     else
       process_status!
       postprocess_status!
@@ -49,14 +59,14 @@ class PostStatusService < BaseService
 
   def preprocess_attributes!
     if @text.blank? && @options[:spoiler_text].present?
-     @text = '.'
-     if @media&.find(&:video?) || @media&.find(&:gifv?)
-       @text = '📹'
-     elsif @media&.find(&:audio?)
-       @text = '🎵'
-     elsif @media&.find(&:image?)
-       @text = '🖼'
-     end
+      @text = '.'
+      if @media&.find(&:video?) || @media&.find(&:gifv?)
+        @text = '📹'
+      elsif @media&.find(&:audio?)
+        @text = '🎵'
+      elsif @media&.find(&:image?)
+        @text = '🖼'
+      end
     end
     @sensitive    = (@options[:sensitive].nil? ? @account.user&.setting_default_sensitive : @options[:sensitive]) || @options[:spoiler_text].present?
     @visibility   = @options[:visibility] || @account.user&.setting_default_privacy
@@ -75,8 +85,8 @@ class PostStatusService < BaseService
       @status = @account.statuses.create!(status_attributes)
     end
 
-    process_hashtags_service.call(@status)
-    process_mentions_service.call(@status)
+    process_hashtags_service.call(@status, nil, @tag_names)
+    process_mentions_service.call(@status, mentions: @mentions)
   end
 
   def schedule_status!
@@ -103,12 +113,18 @@ class PostStatusService < BaseService
     PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
   end
 
+  def update_status!
+    tags = Tag.find_or_create_by_names(@tag_names)
+    @status = UpdateStatusService.new.call(@options[:status], status_attributes, @mentions, tags)
+  end
+
   def validate_media!
     return if @options[:media_ids].blank? || !@options[:media_ids].is_a?(Enumerable)
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > 4 || @options[:poll].present?
 
-    @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(4).map(&:to_i))
+    @media = @options[:status].present? ? @account.media_attachments.where(status_id: [nil, @options[:status].id]) : @account.media_attachments.where(status_id: nil)
+    @media = @media.where(id: @options[:media_ids].take(4).map(&:to_i))
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if @media.size > 1 && @media.find(&:audio_or_video?)
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_ready') if @media.any?(&:not_processed?)
@@ -198,6 +214,16 @@ class PostStatusService < BaseService
       options_hash[:scheduled_at]    = nil
       options_hash[:idempotency]     = nil
       options_hash[:with_rate_limit] = false
+      options_hash[:mention_ids]     = options_hash.delete(:mentions)&.pluck(:id)
+      options_hash[:status_id]       = options_hash.delete(:status)&.id
     end
+  end
+
+  def different_author?
+    @options[:status].present? && @options[:status].account_id != @account.id
+  end
+
+  def status_exists?
+    !(@options[:status].discarded? || @options[:status].destroyed?)
   end
 end

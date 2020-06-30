@@ -142,6 +142,9 @@ export function submitCompose(routerHistory) {
     let media  = getState().getIn(['compose', 'media_attachments']);
     const spoilers = getState().getIn(['compose', 'spoiler']) || getState().getIn(['local_settings', 'always_show_spoilers_field']);
     let spoilerText = spoilers ? getState().getIn(['compose', 'spoiler_text'], '') : '';
+    const id = getState().getIn(['compose', 'id'], null);
+    const submit_url = id ? `/api/v1/statuses/${id}` : '/api/v1/statuses';
+    const submit_action = (res, body, config) => id ? api(getState).put(res, body, config) : api(getState).post(res, body, config);
 
     if ((!status || !status.length) && media.size === 0) {
       return;
@@ -151,7 +154,7 @@ export function submitCompose(routerHistory) {
     if (getState().getIn(['compose', 'advanced_options', 'do_not_federate'])) {
       status = status + ' 👁️';
     }
-    api(getState).post('/api/v1/statuses', {
+    submit_action(submit_url, {
       status,
       content_type: getState().getIn(['compose', 'content_type']),
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),

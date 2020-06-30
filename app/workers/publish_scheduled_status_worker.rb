@@ -21,6 +21,8 @@ class PublishScheduledStatusWorker
     options.tap do |options_hash|
       options_hash[:application] = Doorkeeper::Application.find(options_hash.delete(:application_id)) if options[:application_id]
       options_hash[:thread]      = Status.find(options_hash.delete(:in_reply_to_id)) if options_hash[:in_reply_to_id]
+      options_hash[:mentions]    = Mention.where(id: options_hash.delete(:mention_ids)) if options_hash[:mention_ids]
+      options_hash[:status]      = Status.find_by(id: options_hash.delete(:status_id)) if options_hash[:status_id]
     end
   end
 end

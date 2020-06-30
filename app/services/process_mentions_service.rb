@@ -7,51 +7,21 @@ class ProcessMentionsService < BaseService
   # local mention pointers, send Salmon notifications to mentioned
   # remote users
   # @param [Status] status
-  def call(status)
+  # @option [Enumerable] :mentions Mentions to include
+  # @option [Boolean] :reveal_implicit_mentions Append implicit mentions to text
+  def call(status, mentions: [], reveal_implicit_mentions: true)
     return unless status.local?
 
-    @status  = status
-    mentions = []
+    @status = status
+    @status.text, mentions = ResolveMentionsService.new.call(@status, mentions: mentions, reveal_implicit_mentions: reveal_implicit_mentions)
+    @status.save!
 
-    status.text = status.text.gsub(Account::MENTION_RE) do |match|
-      username, domain = Regexp.last_match(1).split('@')
-
-      domain = begin
-        if TagManager.instance.local_domain?(domain)
-          nil
-        else
-          TagManager.instance.normalize_domain(domain)
-        end
-      end
-
-      mentioned_account = Account.find_remote(username, domain)
-
-      if mention_undeliverable?(mentioned_account)
-        begin
-          mentioned_account = resolve_account_service.call(Regexp.last_match(1))
-        rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
-          mentioned_account = nil
-        end
-      end
-
-      next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
-
-      mentions << mentioned_account.mentions.where(status: status).first_or_create(status: status)
-
-      "@#{mentioned_account.acct}"
-    end
-
-    status.save!
     check_for_spam(status)
 
     mentions.each { |mention| create_notification(mention) }
   end
 
   private
-
-  def mention_undeliverable?(mentioned_account)
-    mentioned_account.nil? || (!mentioned_account.local? && mentioned_account.ostatus?)
-  end
 
   def create_notification(mention)
     mentioned_account = mention.account
@@ -66,10 +36,6 @@ class ProcessMentionsService < BaseService
   def activitypub_json
     return @activitypub_json if defined?(@activitypub_json)
     @activitypub_json = Oj.dump(serialize_payload(ActivityPub::ActivityPresenter.from_status(@status), ActivityPub::ActivitySerializer, signer: @status.account))
-  end
-
-  def resolve_account_service
-    ResolveAccountService.new
   end
 
   def check_for_spam(status)

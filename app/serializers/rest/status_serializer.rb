@@ -6,6 +6,9 @@ class REST::StatusSerializer < ActiveModel::Serializer
              :uri, :url, :replies_count, :reblogs_count,
              :favourites_count
 
+  # Monsterfork additions
+  attributes :updated_at, :edited
+
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
   attribute :muted, if: :current_user?
@@ -13,7 +16,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :pinned, if: :pinnable?
   attribute :local_only if :local?
 
-  attribute :content, unless: :source_requested?
+  attribute :content
   attribute :text, if: :source_requested?
   attribute :content_type, if: :source_requested?
 

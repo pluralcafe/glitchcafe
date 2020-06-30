@@ -17,6 +17,7 @@ import {
 import {
   muteStatus,
   unmuteStatus,
+  editStatus,
   deleteStatus,
   hideStatus,
   revealStatus,
@@ -116,6 +117,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
         onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
       }));
     }
+  },
+
+  onEdit (status, history) {
+    dispatch(editStatus(status, history));
   },
 
   onDirect (account, router) {

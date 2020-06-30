@@ -4,10 +4,11 @@ class ActivityPub::ActivityPresenter < ActiveModelSerializers::Model
   attributes :id, :type, :actor, :published, :to, :cc, :virtual_object
 
   class << self
-    def from_status(status)
+    def from_status(status, update: false)
       new.tap do |presenter|
+        default_activity    = update && status.edited.positive? ? 'Update' : 'Create'
         presenter.id        = ActivityPub::TagManager.instance.activity_uri_for(status)
-        presenter.type      = status.reblog? ? 'Announce' : 'Create'
+        presenter.type      = status.reblog? ? 'Announce' : default_activity
         presenter.actor     = ActivityPub::TagManager.instance.uri_for(status.account)
         presenter.published = status.created_at
         presenter.to        = ActivityPub::TagManager.instance.to(status)

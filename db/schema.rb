@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_28_133322) do
+ActiveRecord::Schema.define(version: 2020_07_02_032702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,16 @@ ActiveRecord::Schema.define(version: 2020_06_28_133322) do
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_account_moderation_notes_on_account_id"
     t.index ["target_account_id"], name: "index_account_moderation_notes_on_target_account_id"
+  end
+
+  create_table "account_notes", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "target_account_id"
+    t.text "comment", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "target_account_id"], name: "index_account_notes_on_account_id_and_target_account_id", unique: true
+    t.index ["target_account_id"], name: "index_account_notes_on_target_account_id"
   end
 
   create_table "account_pins", force: :cascade do |t|
@@ -774,7 +784,9 @@ ActiveRecord::Schema.define(version: 2020_06_28_133322) do
     t.bigint "poll_id"
     t.string "content_type"
     t.datetime "deleted_at"
+    t.integer "edited", default: 0
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
+    t.index ["conversation_id"], name: "index_statuses_on_conversation_id", where: "(deleted_at IS NULL)"
     t.index ["id", "account_id"], name: "index_statuses_local_20190824", order: { id: :desc }, where: "((local OR (uri IS NULL)) AND (deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
     t.index ["id", "account_id"], name: "index_statuses_public_20200119", order: { id: :desc }, where: "((deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
     t.index ["in_reply_to_account_id"], name: "index_statuses_on_in_reply_to_account_id"
@@ -834,16 +846,6 @@ ActiveRecord::Schema.define(version: 2020_06_28_133322) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_invite_requests_on_user_id"
-  end
-
-  create_table "account_notes", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "target_account_id"
-    t.text "comment", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id", "target_account_id"], name: "index_account_notes_on_account_id_and_target_account_id", unique: true
-    t.index ["target_account_id"], name: "index_account_notes_on_target_account_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -921,6 +923,8 @@ ActiveRecord::Schema.define(version: 2020_06_28_133322) do
   add_foreign_key "account_migrations", "accounts", on_delete: :cascade
   add_foreign_key "account_moderation_notes", "accounts"
   add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
+  add_foreign_key "account_notes", "accounts", column: "target_account_id", on_delete: :cascade
+  add_foreign_key "account_notes", "accounts", on_delete: :cascade
   add_foreign_key "account_pins", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "account_pins", "accounts", on_delete: :cascade
   add_foreign_key "account_stats", "accounts", on_delete: :cascade
@@ -1002,8 +1006,6 @@ ActiveRecord::Schema.define(version: 2020_06_28_133322) do
   add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
   add_foreign_key "tombstones", "accounts", on_delete: :cascade
   add_foreign_key "user_invite_requests", "users", on_delete: :cascade
-  add_foreign_key "account_notes", "accounts", column: "target_account_id", on_delete: :cascade
-  add_foreign_key "account_notes", "accounts", on_delete: :cascade
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
   add_foreign_key "users", "invites", on_delete: :nullify
   add_foreign_key "users", "oauth_applications", column: "created_by_application_id", on_delete: :nullify

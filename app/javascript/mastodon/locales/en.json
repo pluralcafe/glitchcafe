@@ -381,6 +381,7 @@
   "status.delete": "Delete",
   "status.detailed_status": "Detailed conversation view",
   "status.direct": "Direct message @{name}",
+  "status.edited": "{count, plural, one {# edit} other {# edits}} · last update: {updated_at}",
   "status.embed": "Embed",
   "status.favourite": "Favourite",
   "status.filtered": "Filtered",

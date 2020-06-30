@@ -3,11 +3,15 @@
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
   context_extensions :atom_uri, :conversation, :sensitive, :voters_count
 
+  context_extensions :edited
+
   attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
              :atom_uri, :in_reply_to_atom_uri,
              :conversation
+
+  attribute :updated
 
   attribute :content
   attribute :content_map, if: :language?
@@ -27,6 +31,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   def id
     raise Mastodon::NotPermittedError, 'Local-only statuses should not be serialized' if object.local_only? && !instance_options[:allow_local_only]
+
     ActivityPub::TagManager.instance.uri_for(object)
   end
 
@@ -82,6 +87,10 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   def published
     object.created_at.iso8601
+  end
+
+  def updated
+    object.updated_at.iso8601
   end
 
   def url

@@ -62,6 +62,7 @@ const initialState = ImmutableMap({
     do_not_federate: false,
     threaded_mode: false,
   }),
+  id: null,
   sensitive: false,
   elefriend: Math.random() < glitchProbability ? Math.floor(Math.random() * totalElefriends) : totalElefriends,
   spoiler: false,
@@ -143,6 +144,7 @@ function apiStatusToTextHashtags (state, status) {
 
 function clearAll(state) {
   return state.withMutations(map => {
+    map.set('id', null);
     map.set('text', '');
     if (defaultContentType) map.set('content_type', defaultContentType);
     map.set('spoiler', false);
@@ -398,8 +400,10 @@ export default function compose(state = initialState, action) {
     });
   case COMPOSE_REPLY_CANCEL:
     state = state.setIn(['advanced_options', 'threaded_mode'], false);
+  // eslint-disable-next-line no-fallthrough
   case COMPOSE_RESET:
     return state.withMutations(map => {
+      map.set('id', null);
       map.set('in_reply_to', null);
       if (defaultContentType) map.set('content_type', defaultContentType);
       map.set('text', '');
@@ -480,6 +484,7 @@ export default function compose(state = initialState, action) {
     return state.mergeIn(['doodle'], action.options);
   case REDRAFT:
     return state.withMutations(map => {
+      map.set('id', action.inplace ? action.status.get('id') : null);
       map.set('text', action.raw_text || unescapeHTML(expandMentions(action.status)));
       map.set('content_type', action.content_type || 'text/plain');
       map.set('in_reply_to', action.status.get('in_reply_to_id'));

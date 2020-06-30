@@ -1,0 +1,8 @@
+.status__edit-notice {
+  & > span {
+    color: $dark-text-color;
+    line-height: normal;
+    font-style: italic;
+    font-size: 12px;
+  }
+}

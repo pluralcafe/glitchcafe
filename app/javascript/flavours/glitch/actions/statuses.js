@@ -55,6 +55,24 @@ export function fetchStatus(id) {
   };
 };
 
+export function editStatus(status, routerHistory) {
+  return (dispatch, getState) => {
+    const id = status.get('id');
+
+    dispatch(fetchContext(id));
+    dispatch(fetchStatusRequest(id, false));
+
+    api(getState).get(`/api/v1/statuses/${id}`, { params: { source: 1 } }).then(response => {
+      dispatch(importFetchedStatus(response.data));
+      dispatch(fetchStatusSuccess(false));
+      dispatch(redraft(status, response.data.text, response.data.content_type, true));
+      ensureComposeIsVisible(getState, routerHistory);
+    }).catch(error => {
+      dispatch(fetchStatusFail(id, error, false));
+    });
+  };
+};
+
 export function fetchStatusSuccess(skipLoading) {
   return {
     type: STATUS_FETCH_SUCCESS,
@@ -72,12 +90,13 @@ export function fetchStatusFail(id, error, skipLoading) {
   };
 };
 
-export function redraft(status, raw_text, content_type) {
+export function redraft(status, raw_text, content_type, inplace = false) {
   return {
     type: REDRAFT,
     status,
     raw_text,
     content_type,
+    inplace,
   };
 };
 
