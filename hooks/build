@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo "Building from ${SOURCE_COMMIT}"
+docker build --build-arg SOURCE_COMMIT=`head -c 7 <<< $SOURCE_COMMIT` -t $IMAGE_NAME .

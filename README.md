@@ -1,7 +1,7 @@
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
-![Build Status](https://img.shields.io/docker/cloud/build/pluralcafe/mastodon) ![Site Status](https://img.shields.io/website?label=plural.cafe&logo=mastodon&url=https%3A%2F%2Fplural.cafe)
+[![Build Status](https://img.shields.io/docker/cloud/build/pluralcafe/mastodon)](https://hub.docker.com/repository/docker/pluralcafe/mastodon) [![Site Status](https://img.shields.io/website?label=plural.cafe&logo=mastodon&url=https%3A%2F%2Fplural.cafe)](https://plural.cafe)
 
 Mastodon is a **free, open-source social network server** based on **open web protocols** like ActivityPub and OStatus. The social focus of the project is a viable decentralized alternative to commercial social media silos that returns the control of the content distribution channels to the people. The technical focus of the project is a good user interface, a clean REST API for 3rd party apps and robust anti-abuse tools.
 
@@ -23,8 +23,11 @@ This instance is a fork of a fork: this has the [Mastodon Glitch Edition](https:
 
 ---
 
-## Changes from Upstream
+## Notable changes from upstream
 
-* 2126fd0cd tweak to ordered list display
-* 3de0fecfa support summary/details HTML
-* cb7608c37 allow gemini protocol links
+See output of `git log glitch..main --oneline | grep -v '[mM]erge' | less` for a (more) complete history.
+
+* &lt;ol&gt; margin issue fixed so numbered lists aren't cut off a few pixels shy of 1 number
+* HTML summary/details tags are allowed in toots
+* gemini protocol links are supported (not yet supported: automatically marking gemini:// text as links)
+* authentication required for account api endpoints to block some naive scrapers

@@ -127,6 +127,9 @@ ENV BIND="0.0.0.0"
 
 USER mastodon
 
+ARG SOURCE_COMMIT
+ENV SOURCE_TAG $SOURCE_COMMIT
+
 # Precompile assets
 RUN cd ~ && OTP_SECRET=_ SECRET_KEY_BASE=_ rails assets:precompile --trace && yarn cache clean
 
