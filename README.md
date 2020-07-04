@@ -23,10 +23,11 @@ This instance is a fork of a fork: this has the [Mastodon Glitch Edition](https:
 
 ---
 
-## Notable changes from upstream
+## Notable changes from glitch-soc
 
 See output of `git log glitch..main --oneline | grep -v '[mM]erge' | less` for a (more) complete history.
 
+* in-place editing of posts (ported from Monsterpit)
 * &lt;ol&gt; margin issue fixed so numbered lists aren't cut off a few pixels shy of 1 number
 * HTML summary/details tags are allowed in toots
 * gemini protocol links are supported (not yet supported: automatically marking gemini:// text as links)
