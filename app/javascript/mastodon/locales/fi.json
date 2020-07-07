@@ -433,7 +433,7 @@
   "upload_error.poll": "Tiedon lataaminen ei ole sallittua kyselyissä.",
   "upload_form.audio_description": "Kuvaile kuulovammaisille",
   "upload_form.description": "Anna kuvaus näkörajoitteisia varten",
-  "upload_form.edit": "Muokkaa",
+  "upload_form.edit": "Kuvaile",
   "upload_form.undo": "Peru",
   "upload_form.video_description": "Kuvaile kuulo- tai näkövammaisille",
   "upload_modal.analyzing_picture": "Analysoidaan kuvaa…",

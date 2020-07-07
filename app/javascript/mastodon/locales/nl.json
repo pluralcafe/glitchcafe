@@ -433,7 +433,7 @@
   "upload_error.poll": "Het uploaden van bestanden is in polls niet toegestaan.",
   "upload_form.audio_description": "Omschrijf dit voor mensen met een auditieve beperking",
   "upload_form.description": "Omschrijf dit voor mensen met een visuele beperking",
-  "upload_form.edit": "Bewerken",
+  "upload_form.edit": "Omschrijf",
   "upload_form.undo": "Verwijderen",
   "upload_form.video_description": "Omschrijf dit voor mensen met een auditieve of visuele beperking",
   "upload_modal.analyzing_picture": "Afbeelding analyseren…",

@@ -433,7 +433,7 @@
   "upload_error.poll": "Subida de archivos no permitida con encuestas.",
   "upload_form.audio_description": "Describir para personas con problemas auditivos",
   "upload_form.description": "Describir para los usuarios con dificultad visual",
-  "upload_form.edit": "Editar",
+  "upload_form.edit": "Describir",
   "upload_form.undo": "Borrar",
   "upload_form.video_description": "Describir para personas con problemas auditivos o visuales",
   "upload_modal.analyzing_picture": "Analizando imagen…",

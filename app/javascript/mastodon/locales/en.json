@@ -435,7 +435,7 @@
   "upload_error.poll": "File upload not allowed with polls.",
   "upload_form.audio_description": "Describe for people with hearing loss",
   "upload_form.description": "Describe for the visually impaired",
-  "upload_form.edit": "Edit",
+  "upload_form.edit": "Describe",
   "upload_form.undo": "Delete",
   "upload_form.video_description": "Describe for people with hearing loss or visual impairment",
   "upload_modal.analyzing_picture": "Analyzing picture…",

@@ -438,7 +438,7 @@
   "upload_error.poll": "アンケートではファイルをアップロードできません。",
   "upload_form.audio_description": "聴取が難しいユーザーへの説明",
   "upload_form.description": "閲覧が難しいユーザーへの説明",
-  "upload_form.edit": "編集",
+  "upload_form.edit": "説明",
   "upload_form.undo": "削除",
   "upload_form.video_description": "視聴が難しいユーザーへの説明",
   "upload_modal.analyzing_picture": "画像を解析中…",

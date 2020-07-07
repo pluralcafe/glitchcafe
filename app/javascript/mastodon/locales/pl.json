@@ -438,7 +438,7 @@
   "upload_error.poll": "Dołączanie plików nie dozwolone z głosowaniami.",
   "upload_form.audio_description": "Opisz dla osób niesłyszących i niedosłyszących",
   "upload_form.description": "Wprowadź opis dla niewidomych i niedowidzących",
-  "upload_form.edit": "Edytuj",
+  "upload_form.edit": "Opisz",
   "upload_form.undo": "Usuń",
   "upload_form.video_description": "Opisz dla osób niesłyszących, niedosłyszących, niewidomych i niedowidzących",
   "upload_modal.analyzing_picture": "Analizowanie obrazu…",
