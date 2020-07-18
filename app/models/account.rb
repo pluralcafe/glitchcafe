@@ -50,6 +50,7 @@
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
 #  devices_url                   :string
+#  require_dereference           :boolean          default(FALSE), not null
 #
 
 class Account < ApplicationRecord

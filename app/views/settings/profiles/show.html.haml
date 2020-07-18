@@ -32,6 +32,11 @@
   - if Setting.profile_directory
     .fields-group
       = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable'), recommended: true
+  
+  %h4= t 'preferences.profiles.advanced_privacy'
+
+  .fields-group
+    = f.input :require_dereference, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.require_dereference_html')
 
   %hr.spacer/
 

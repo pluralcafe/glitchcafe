@@ -7,6 +7,7 @@ class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
   }.freeze
 
   CONTEXT_EXTENSION_MAP = {
+    require_dereference: { 'mp' => 'http://the.monsterpit.net/ns#', 'requireDereference' => 'mp:requireDereference' },
     manually_approves_followers: { 'manuallyApprovesFollowers' => 'as:manuallyApprovesFollowers' },
     sensitive: { 'sensitive' => 'as:sensitive' },
     hashtag: { 'Hashtag' => 'as:Hashtag' },

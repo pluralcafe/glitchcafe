@@ -1014,6 +1014,8 @@ en:
     other: Other
     posting_defaults: Posting defaults
     public_timelines: Public timelines
+    profiles:
+      advanced_privacy: Advanced privacy
   reactions:
     errors:
       limit_reached: Limit of different reactions reached

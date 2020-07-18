@@ -13,7 +13,7 @@ class ActivityPub::ActivityPresenter < ActiveModelSerializers::Model
         presenter.to        = ActivityPub::TagManager.instance.to(status)
         presenter.cc        = ActivityPub::TagManager.instance.cc(status)
 
-        unless embed
+        unless embed || !status.account.require_dereference
           presenter.virtual_object = ActivityPub::TagManager.instance.uri_for(status.proper)
           next
         end

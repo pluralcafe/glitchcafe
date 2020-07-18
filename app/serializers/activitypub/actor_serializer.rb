@@ -24,6 +24,9 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   attribute :moved_to, if: :moved?
   attribute :also_known_as, if: :also_known_as?
 
+  context_extensions :require_dereference
+  attribute :require_dereference
+
   class EndpointsSerializer < ActivityPub::Serializer
     include RoutingHelper
 

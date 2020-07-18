@@ -1,0 +1,53 @@
+---
+en-MP:
+  simple_form:
+    hints:
+      account_warning_preset:
+        text: You can use roar syntax, such as URLs, hashtags and mentions
+      admin_account_action:
+        include_statuses: The creature will see which roars have caused the moderation action or warning
+        send_email_notification: The creature will receive an explanation of what happened with their account
+        text_html: Optional. You can use roar syntax. You can <a href="%{path}">add warning presets</a> to save time
+      announcement:
+        text: You can use roar syntax. Please be mindful of the space the announcement will take up on the user's screen
+      defaults: 
+        irreversible: Filtered roars will disappear irreversibly, even if filter is later removed
+        phrase: Will be matched regardless of casing in text or content warning of a roar
+        require_dereference_html: "When enabled, Monsterpit will deliver your roars to other servers as pointers and require an authenticated request to access their (non-public) content.  This allows permissions and blocks you've set to be enforced more stringently.  <strong>Beware that standard Mastodon servers are not compatible with this feature.</strong>"
+        setting_aggregate_reblogs: Do not show new boosts for roars that have been recently boosted (only affects newly-received boosts)
+        setting_default_content_type_html: When composing roars, assume they are written in raw HTML, unless specified otherwise
+        setting_default_content_type_markdown: When composing roars, assume they are using Markdown for rich text formatting, unless specified otherwise
+        setting_default_content_type_plain: When composing roars, assume they are plain text with no special formatting, unless specified otherwise (default)
+        setting_default_content_type_html_html: "<strong>&lt;strong&gt;Bold&lt;/strong&gt;</strong>, <u>&lt;u&gt;Underline&lt;/u&gt;</u>, <em>&lt;em&gt;Italic&lt;/em&gt;</em>, <code>&lt;code&gt;Console&lt;/code&gt;</code>, ..."
+        setting_default_content_type_markdown_html: "<strong>**Bold**</strong>, <u>_Underline_</u>, <em>*Italic*</em>, <code>`Console`</code>, ..."
+        setting_default_content_type_plain_html: No formatting.
+        setting_default_content_type_console_html: <code>Plain-text console formatting.</code>
+        setting_default_content_type_bbcode_html: "<strong>[b]Bold[/b]</strong>, <u>[u]Underline[/u]</u>, <em>[i]Italic[/i]</em>, <code>[code]Console[/code]</code>, ..."
+        setting_default_language: The language of your roars can be detected automatically, but it's not always accurate
+        setting_show_application: The application you use to toot will be displayed in the detailed view of your roars
+        setting_skin: Reskins the selected UI flavour
+      invite_request:
+        text: This helps us determine if registrations are made in sincerity and prevent spam. It is only visible to admins.
+      user:
+        chosen_languages: When checked, only roars in selected languages will be displayed in public timelines
+    labels:
+      admin_account_action:
+        include_statuses: Include reported roars in the e-mail
+      defaults:
+        bot: This is an automated account
+        require_dereference: Indirect federation mode
+        setting_crop_images: Crop images in non-expanded roars to 16x9
+        setting_default_content_type: Default format for roars
+        setting_default_language: Roar language
+        setting_default_privacy: Roar privacy
+        setting_delete_modal: Show confirmation dialog before deleting a roar
+        setting_display_media_hide_all: Hide all
+        setting_display_media_show_all: Reveal all
+        setting_expand_spoilers: Always expand roars marked with content warnings
+        setting_favourite_modal: Show confirmation dialog before admiring (applies to Glitch flavour only)
+        setting_show_application: Disclose application used to send roars
+        setting_use_pending_items: Relax mode
+      invite_request:
+        text: "Introduce yourself and let the admins know what brings you to Monsterpit."
+      notification_emails:
+        favourite: Someone admired your roar
