@@ -27,9 +27,7 @@ This instance is a fork of a fork: this has the [Mastodon Glitch Edition](https:
 
 See output of `git log glitch..main --oneline | grep -v '[mM]erge' | less` for a (more) complete history.
 
-* support for incoming indirect federation (cherry-picked from Monsterfork)
-	* does not yet support authoring posts this way. for that implementation, see "[Privacy] Federate references to objects..." "[Privacy] Add profile option for indirect federation..." "[Database] Add schema changes for ... indirect federation"
 * &lt;ol&gt; margin issue fixed so numbered lists aren't cut off a few pixels shy of 1 number
 * HTML summary/details tags are allowed in toots
 * gemini protocol links are supported (not yet supported: automatically marking gemini:// text as links)
-* authentication required for account api endpoints to block some naive scrapers (cherry-picked from Monsterfork)
+* authentication required for account api endpoints to block some naive scrapers
