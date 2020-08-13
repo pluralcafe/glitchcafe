@@ -183,7 +183,6 @@ eu:
         trendable: Baimendu traola hau joeretan agertzea
         usable: Baimendu tootek traola hau erabiltzea
     'no': Ez
-    recommended: Aholkatua
     required:
       mark: "*"
       text: beharrezkoa

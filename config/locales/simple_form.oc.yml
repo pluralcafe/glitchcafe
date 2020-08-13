@@ -184,7 +184,6 @@ oc:
         trendable: Permetre a aquesta etiqueta d’aparéisser a las tendéncias
         usable: Permetre als tuts d’utilizar aquesta etiqueta
     'no': Non
-    recommended: Recomandat
     required:
       mark: "*"
       text: requesit

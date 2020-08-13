@@ -183,7 +183,6 @@ cy:
         trendable: Gadewch i'r hashnod hwn ymddangos o dan dueddiadau
         usable: Caniatáu i tŵtiau ddefnyddio'r hashnod hwn
     'no': Na
-    recommended: Argymhellwyd
     required:
       mark: "*"
       text: gofynnol

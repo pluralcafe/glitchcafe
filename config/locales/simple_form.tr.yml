@@ -181,7 +181,6 @@ tr:
         trendable: Bu etiketin trendlerin altında görünmesine izin ver
         usable: Tootların bu etiketi kullanmasına izin ver
     'no': Hayır
-    recommended: Önerilen
     required:
       mark: "*"
       text: gerekli

@@ -183,7 +183,6 @@ ro:
         trendable: Permite acestui hashtag să apară sub tendințe
         usable: Permite postărilor să folosească acest hashtag
     'no': Nu
-    recommended: Recomandat
     required:
       mark: "*"
       text: obligatoriu

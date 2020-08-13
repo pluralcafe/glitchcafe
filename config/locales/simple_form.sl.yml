@@ -137,7 +137,6 @@ sl:
         reblog: Pošlji e-pošto, ko nekdo sune vaše stanje
         report: Pošlji e-pošto, ko je oddana nova prijava
     'no': Ne
-    recommended: Priporočeno
     required:
       mark: "*"
       text: zahtevano

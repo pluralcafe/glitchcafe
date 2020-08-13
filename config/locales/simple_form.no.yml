@@ -183,7 +183,6 @@
         trendable: Tillat denne emneknaggen til å vises under trender
         usable: Tillat tuter å bruke denne emneknaggen
     'no': Nei
-    recommended: Anbefalt
     required:
       mark: "*"
       text: obligatorisk

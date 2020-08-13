@@ -128,7 +128,6 @@ fi:
         trendable: Salli tämän aihetunnisteen näkyä trendeissä
         usable: Salli tuuttauksien käyttää tätä aihetunnistetta
     'no': Ei
-    recommended: Suositeltu
     required:
       mark: "*"
       text: pakollinen tieto

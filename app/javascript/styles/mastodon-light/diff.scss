@@ -624,12 +624,6 @@ html {
     background: rgba($error-red, 0.5);
     text-shadow: none;
   }
-
-  .recommended {
-    border-color: $ui-highlight-color;
-    color: $ui-highlight-color;
-    background-color: rgba($ui-highlight-color, 0.1);
-  }
 }
 
 .compose-form .compose-form__warning {

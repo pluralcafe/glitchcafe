@@ -94,7 +94,6 @@ ast:
       tag:
         name: Etiqueta
     'no': Non
-    recommended: Aconséyase
     required:
       mark: "*"
       text: ríquese

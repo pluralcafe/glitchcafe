@@ -108,7 +108,6 @@ sv:
         mention: Skicka e-post när någon nämner dig
         reblog: Skicka e-post när någon knuffar din status
     'no': Nej
-    recommended: Rekommenderad
     required:
       mark: "*"
       text: obligatorisk

@@ -184,7 +184,6 @@ fr:
         trendable: Autoriser ce hashtag à apparaitre dans les tendances
         usable: Autoriser les pouets à utiliser ce hashtag
     'no': Non
-    recommended: Recommandé
     required:
       mark: "*"
       text: Champs requis

@@ -183,7 +183,6 @@ id:
         trendable: Izinkan tagar ini muncul di bawah tren
         usable: Izinkan toot memakai tagar ini
     'no': Tidak
-    recommended: Direkomendasikan
     required:
       mark: "*"
       text: wajib

@@ -184,7 +184,6 @@ is:
         trendable: Leyfa þessu myllumerki að birtast undir tilhneigingum
         usable: Leyfa tístum að nota þetta myllumerki
     'no': Nei
-    recommended: Mælt með
     required:
       mark: "*"
       text: nauðsynlegt

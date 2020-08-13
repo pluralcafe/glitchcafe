@@ -184,7 +184,6 @@ pt-BR:
         trendable: Permitir que esta hashtag fique em alta
         usable: Permitir que toots usem esta hashtag
     'no': Não
-    recommended: Recomendado
     required:
       mark: "*"
       text: obrigatório

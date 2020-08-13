@@ -184,7 +184,6 @@ hu:
         trendable: A hashtag megjelenhet a trendek között
         usable: Tülkök használhatják ezt a hashtaget
     'no': Nem
-    recommended: Ajánlott
     required:
       mark: "*"
       text: kötelező

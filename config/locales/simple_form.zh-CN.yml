@@ -184,7 +184,6 @@ zh-CN:
         trendable: 允许在热门下显示此话题
         usable: 允许嘟文使用此话题标签
     'no': 否
-    recommended: 推荐
     required:
       mark: "*"
       text: 必填

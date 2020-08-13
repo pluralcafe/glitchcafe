@@ -184,7 +184,6 @@ it:
         trendable: Permetti a questo hashtag di apparire nelle tendenze
         usable: Permetti ai toot di utilizzare questo hashtag
     'no': 'No'
-    recommended: Consigliato
     required:
       mark: "*"
       text: richiesto

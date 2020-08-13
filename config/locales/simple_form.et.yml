@@ -183,7 +183,6 @@ et:
         trendable: Luba sellel sildil trendida
         usable: Luba tuututustel seda silti kasutada
     'no': Ei
-    recommended: Soovituslik
     required:
       mark: "*"
       text: kohustuslik

@@ -161,7 +161,6 @@ zh-TW:
         trendable: 允許此主題標籤在趨勢下顯示
         usable: 允許嘟文使用此主題標籤
     'no': 否
-    recommended: 建議
     required:
       mark: "*"
       text: 必須填寫

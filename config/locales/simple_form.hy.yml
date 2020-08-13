@@ -35,7 +35,6 @@ hy:
       invite:
         comment: Մեկնաբանություն
     'no': Ոչ
-    recommended: Խորհուրդ է տրվում
     required:
       mark: "*"
       text: պարտադիր

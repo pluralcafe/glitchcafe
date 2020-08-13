@@ -184,7 +184,6 @@ ca:
         trendable: Permet que aquesta etiqueta aparegui en les tendències
         usable: Permet als tuts emprar aquesta etiqueta
     'no': 'No'
-    recommended: Recomanat
     required:
       mark: "*"
       text: necessari

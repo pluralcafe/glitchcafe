@@ -184,7 +184,6 @@ ja:
         trendable: トレンドへの表示を許可する
         usable: トゥートへの使用を許可する
     'no': いいえ
-    recommended: おすすめ
     required:
       mark: "*"
       text: 必須

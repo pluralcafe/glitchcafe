@@ -184,7 +184,6 @@ ko:
         trendable: 이 해시태그가 유행에 보여지도록 허용
         usable: 이 해시태그를 툿에 사용 가능하도록 허용
     'no': 아니오
-    recommended: 추천함
     required:
       mark: "*"
       text: 필수 항목

@@ -184,7 +184,6 @@ en:
         trendable: Allow this hashtag to appear under trends
         usable: Allow toots to use this hashtag
     'no': 'No'
-    recommended: Recommended
     required:
       mark: "*"
       text: required

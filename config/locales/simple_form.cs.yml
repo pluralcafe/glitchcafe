@@ -184,7 +184,6 @@ cs:
         trendable: Povolit tento hashtag v trendech
         usable: Povolit používat tento hashtag v tootech
     'no': Ne
-    recommended: Doporučeno
     required:
       mark: "*"
       text: vyžadováno

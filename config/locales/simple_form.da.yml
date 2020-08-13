@@ -129,7 +129,6 @@ da:
         trendable: Tillad at dette hashtag vises under trends
         usable: Tillad toots at benytte dette hashtag
     'no': Nej
-    recommended: Anbefalet
     required:
       mark: "*"
       text: påkrævet

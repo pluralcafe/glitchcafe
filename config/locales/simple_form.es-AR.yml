@@ -184,7 +184,6 @@ es-AR:
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a los toots usar esta etiqueta
     'no': 'No'
-    recommended: Opción recomendada
     required:
       mark: "*"
       text: obligatorio
