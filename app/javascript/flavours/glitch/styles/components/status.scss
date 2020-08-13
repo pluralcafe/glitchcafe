@@ -374,7 +374,7 @@
     }
 
     .display-name:hover .display-name__html {
-      text-decoration: none;
+      text-decoration: underline;
     }
 
     .status__content {
@@ -393,7 +393,7 @@
       }
       
       a:hover {
-        text-decoration: none;
+        text-decoration: underline;
       }
     }
     &:focus > .status__content:after {
@@ -414,6 +414,10 @@
 
   .notification__message {
     margin: -10px 0px 10px 0;
+
+	a:hover {
+	  text-decoration: underline;
+	}
   }
 }
 
@@ -557,6 +561,10 @@
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 }
 
