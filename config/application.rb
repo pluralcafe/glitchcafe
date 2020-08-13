@@ -122,6 +122,9 @@ module Mastodon
       config.i18n.default_locale = :en
     end
 
+    # fall back to English when a translation cannot be found
+    config.i18n.fallbacks = [:en]
+
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
