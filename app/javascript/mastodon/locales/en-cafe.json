@@ -1,0 +1,13 @@
+{
+  "upload_form.edit": "Describe",
+  "upload_modal.description_placeholder": "Jackdaws love my big sphinx of quartz",
+  "upload_modal.edit_media": "Add description",
+
+  "column.community": "Plural Café",
+  "directory.local": "From Plural Café only",
+  "empty_column.community": "The Plural Café timeline is empty. Write something publicly to get the ball rolling!",
+  "getting_started.open_source_notice": "GlitchCafé is open source software. You can contribute or report issues on GitHub at {github}.",
+  "introduction.federation.local.text": "Public posts from people on Plural Café will appear in the local timeline.",
+  "navigation_bar.community_timeline": "Plural Café timeline",
+  "tabs_bar.local_timeline": "Plural Café"
+}

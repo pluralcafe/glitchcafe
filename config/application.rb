@@ -58,6 +58,7 @@ module Mastodon
       :de,
       :el,
       :en,
+      :'en-cafe',
       :eo,
       :es,
       :'es-AR',
@@ -119,11 +120,11 @@ module Mastodon
     config.i18n.default_locale = ENV['DEFAULT_LOCALE']&.to_sym
 
     unless config.i18n.available_locales.include?(config.i18n.default_locale)
-      config.i18n.default_locale = :en
+      config.i18n.default_locale = :'en-cafe'
     end
 
     # fall back to English when a translation cannot be found
-    config.i18n.fallbacks = [:en]
+    config.i18n.fallbacks = [:'en-cafe', :en]
 
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]

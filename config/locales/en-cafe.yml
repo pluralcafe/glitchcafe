@@ -1,0 +1,18 @@
+---
+en-cafe:
+  about:
+    hosted_on: GlitchCafé hosted on %{domain}
+    unavailable_content: Domain blocks
+    unavailable_content_description:
+      domain: Instance
+      reason: Reason
+      rejecting_media: 'Media files from these instances will not be processed or stored, and no thumbnails will be displayed, requiring manual click-through to the original file:'
+      rejecting_media_title: Filtered media
+      silenced: 'Posts from these instances will be hidden in public timelines and conversations, and no notifications will be generated from their users interactions, unless you are following them:'
+      silenced_title: Silenced instances
+      suspended: 'No data from these instances will be processed, stored or exchanged, making any interaction or communication with users from these instances impossible:'
+      suspended_title: Suspended instances
+  auth:
+    description:
+      prefix_invited_by_user: "@%{name} invites you to join %{title}!"
+      prefix_sign_up: Sign up on %{intance} today!
