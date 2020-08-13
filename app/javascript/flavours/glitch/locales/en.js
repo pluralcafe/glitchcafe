@@ -1,7 +1,7 @@
 import inherited from 'mastodon/locales/en.json';
 
 const messages = {
-  'getting_started.open_source_notice': 'GlitchCafe is free open source software forked from {Glitchsoc} and {Mastodon}. You can contribute or report issues on GitHub at {github}.',
+  'getting_started.open_source_notice': 'GlitchCafe is free open source software based on {Glitchsoc} and {Mastodon}. You can see our source code on GitHub at {github}.',
   'layout.auto': 'Auto',
   'layout.current_is': 'Your current layout is:',
   'layout.desktop': 'Desktop',
