@@ -14,5 +14,5 @@ en-cafe:
       suspended_title: Suspended instances
   auth:
     description:
-      prefix_invited_by_user: "@%{name} invites you to join %{title}!"
-      prefix_sign_up: Sign up on %{intance} today!
+      prefix_invited_by_user: "@%{name} invites you to join Plural Café!"
+      prefix_sign_up: Sign up on Plural Café today!
