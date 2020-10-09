@@ -25,7 +25,7 @@ class Api::V1::Accounts::FollowingAccountsController < Api::BaseController
   end
 
   def hide_results?
-    !user_signed_in? || (@account.hides_following? && current_account&.id != @account.id) || (current_account && @account.blocking?(current_account))
+    !user_signed_in? || @account.suspended? || (@account.hides_following? && current_account&.id != @account.id) || (current_account && @account.blocking?(current_account))
   end
 
   def default_accounts
