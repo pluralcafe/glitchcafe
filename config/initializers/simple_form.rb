@@ -1,7 +1,7 @@
 # Use this setup block to configure all options available in SimpleForm.
 
 module AppendComponent
-  def append(wrapper_options = nil)
+  def append(_wrapper_options = nil)
     @append ||= begin
       options[:append].to_s.html_safe if options[:append].present?
     end
