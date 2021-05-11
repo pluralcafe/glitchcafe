@@ -1,7 +1,13 @@
 ---
 en-cafe:
   about:
+    about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
     hosted_on: GlitchCafé hosted on %{domain}
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
+    posts_with_replies: Toots and replies
     unavailable_content: Domain blocks
     unavailable_content_description:
       domain: Instance
@@ -12,7 +18,30 @@ en-cafe:
       silenced_title: Silenced instances
       suspended: 'No data from these instances will be processed, stored or exchanged, making any interaction or communication with users from these instances impossible:'
       suspended_title: Suspended instances
+  archive_takeout:
+      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in the ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
   auth:
     description:
       prefix_invited_by_user: "@%{name} invites you to join Plural Café!"
       prefix_sign_up: Sign up on Plural Café today!
+  remote_interaction:
+    favourite:
+      prompt: 'You want to favourite this toot:'
+    reblog:
+      prompt: 'You want to boost this toot:'
+    reply:
+      prompt: 'You want to reply to this toot:'
+  scheduled_statuses:
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
+    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
+  statuses:
+    pin_errors:
+      limit: You have already pinned the maximum number of toots
+      ownership: Someone else's toot cannot be pinned
+      private: Non-public toot cannot be pinned
+  stream_entries:
+    pinned: Pinned toot
+  user_mailer:
+    warning:
+      explanation:
+        silence: You can still use your account but only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
