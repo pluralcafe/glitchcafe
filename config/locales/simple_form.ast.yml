@@ -37,7 +37,6 @@ ast:
       announcement:
         text: Anunciu
       defaults:
-        avatar: Avatar
         bot: Esta cuenta ye d'un robó
         chosen_languages: Peñera de llingües
         confirm_new_password: Confirmación de la contraseña nueva
@@ -95,6 +94,5 @@ ast:
         name: Etiqueta
     'no': Non
     required:
-      mark: "*"
       text: ríquese
     'yes': Sí

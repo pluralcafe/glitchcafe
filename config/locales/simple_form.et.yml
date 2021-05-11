@@ -184,6 +184,5 @@ et:
         usable: Luba tuututustel seda silti kasutada
     'no': Ei
     required:
-      mark: "*"
       text: kohustuslik
     'yes': Jah

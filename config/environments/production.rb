@@ -86,9 +86,12 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # E-mails
+  outgoing_email_address = ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost')
+  outgoing_mail_domain   = Mail::Address.new(outgoing_email_address).domain
   config.action_mailer.default_options = {
-    from: ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost'),
-    reply_to: ENV['SMTP_REPLY_TO']
+    from: outgoing_email_address,
+    reply_to: ENV['SMTP_REPLY_TO'],
+    'Message-ID': -> { "<#{Mail.random_tag}@#{outgoing_mail_domain}>" },
   }
 
   config.action_mailer.smtp_settings = {
@@ -109,13 +112,13 @@ Rails.application.configure do
 
   config.action_dispatch.default_headers = {
     'Server'                  => 'Mastodon',
-    #'X-Frame-Options'         => 'DENY',
-    #'X-Content-Type-Options'  => 'nosniff',
-    #'X-XSS-Protection'        => '1; mode=block',
-    #'Referrer-Policy'         => 'same-origin',
-    #'Strict-Transport-Security' => 'max-age=63072000; includeSubDomains; preload',
+    'X-Frame-Options'         => 'DENY',
+    'X-Content-Type-Options'  => 'nosniff',
+    'X-XSS-Protection'        => '1; mode=block',
+    'Permissions-Policy'      => 'interest-cohort=()',
+    'Referrer-Policy'         => 'same-origin',
+    'Strict-Transport-Security' => 'max-age=63072000; includeSubDomains; preload',
     'X-Clacks-Overhead' => 'GNU Natalie Nguyen'
-
   }
 
   config.x.otp_secret = ENV.fetch('OTP_SECRET')

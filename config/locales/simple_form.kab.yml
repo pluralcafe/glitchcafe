@@ -89,7 +89,6 @@ kab:
         text: Acimi tebγiḍ ad ternuḍ iman-ik?
       ip_block:
         comment: Awennit
-        ip: IP
         severities:
           no_access: Sewḥel anekcum
         severity: Alugen
@@ -100,6 +99,5 @@ kab:
         name: Ahacṭag
     'no': Ala
     required:
-      mark: "*"
       text: ilaq
     'yes': Ih

@@ -129,6 +129,5 @@ fi:
         usable: Salli tuuttauksien käyttää tätä aihetunnistetta
     'no': Ei
     required:
-      mark: "*"
       text: pakollinen tieto
     'yes': Kyllä
