@@ -19,6 +19,7 @@ module SettingsHelper
     'en-cafe': 'English (Plural Café)',
     eo: 'Esperanto',
     'es-AR': 'Español (Argentina)',
+    'es-MX': 'Español (México)',
     es: 'Español',
     et: 'Eesti',
     eu: 'Euskara',
