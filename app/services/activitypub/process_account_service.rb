@@ -38,14 +38,13 @@ class ActivityPub::ProcessAccountService < BaseService
     return if @account.nil?
 
     after_protocol_change! if protocol_changed?
+    after_key_change! if key_changed? && !@options[:signed_with_known_key]
     clear_tombstones! if key_changed?
     after_suspension_change! if suspension_changed?
-    return after_key_change! if key_changed? && !@options[:signed_with_known_key]
 
     unless @options[:only_key] || @account.suspended?
       check_featured_collection! if @account.featured_collection_url.present?
       check_links! unless @account.fields.empty?
-      process_sync
     end
 
     @account
@@ -141,8 +140,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def after_key_change!
-    ResetAccountWorker.perform_async(@account.id)
-    nil
+    RefollowWorker.perform_async(@account.id)
   end
 
   def after_suspension_change!
