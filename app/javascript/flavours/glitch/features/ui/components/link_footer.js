@@ -58,11 +58,12 @@ class LinkFooter extends React.PureComponent {
         <p>
           <FormattedMessage
             id='getting_started.open_source_notice'
-            defaultMessage='GlitchCafe is open source software, based on {Glitchsoc} which is a friendly fork of {Mastodon}. You can contribute or report issues on GitHub at {github}.'
+            defaultMessage='GlitchCafé is free open source software, based on {Glitchsoc} which is a friendly fork of {Mastodon}. You can see our source code on {github} and report bugs, request features, or contribute to the code by emailing {admin}.'
             values={{
-              github: <span><a href='https://github.com/pluralcafe/mastodon' rel='noopener noreferrer' target='_blank'>pluralcafe/mastodon</a> (v{version})</span>,
+              github: <span><a href='https://git.starfall.systems/pluralcafe/mastodon/' rel='noopener noreferrer' target='_blank'>our Git repository</a> (v{version})</span>,
               Glitchsoc: <a href='https://github.com/glitch-soc/mastodon' rel='noopener noreferrer' target='_blank'>glitch-soc/mastodon</a>,
-              Mastodon: <a href='https://github.com/tootsuite/mastodon' rel='noopener noreferrer' target='_blank'>Mastodon</a> }}
+              Mastodon: <a href='https://github.com/tootsuite/mastodon' rel='noopener noreferrer' target='_blank'>Mastodon</a>,
+			  admin: <a href='mailto://admin@plural.cafe' rel='noopener noreferrer'>admin@plural.cafe</a> }}
           />
         </p>
       </div>
