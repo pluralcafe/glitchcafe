@@ -118,7 +118,8 @@ Rails.application.configure do
     'Permissions-Policy'      => 'interest-cohort=()',
     'Referrer-Policy'         => 'same-origin',
     'Strict-Transport-Security' => 'max-age=63072000; includeSubDomains; preload',
-    'X-Clacks-Overhead' => 'GNU Natalie Nguyen, GNU Anna Harren'
+    'X-Clacks-Overhead' => 'GNU Natalie Nguyen, GNU Anna Harren',
+    'big-tails' => 'never-fail'
   }
 
   config.x.otp_secret = ENV.fetch('OTP_SECRET')
