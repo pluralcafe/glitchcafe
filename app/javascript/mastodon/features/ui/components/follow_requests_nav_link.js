@@ -29,10 +29,6 @@ class FollowRequestsNavLink extends React.Component {
   render () {
     const { count } = this.props;
 
-    if (count === 0) {
-      return null;
-    }
-
     return <NavLink className='column-link column-link--transparent' to='/follow_requests'><IconWithBadge className='column-link__icon' id='user-plus' count={count} /><FormattedMessage id='navigation_bar.follow_requests' defaultMessage='Follow requests' /></NavLink>;
   }
 
