@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { invitesEnabled, version, limitedFederationMode, repository, source_url } from 'flavours/glitch/util/initial_state';
+import { invitesEnabled, limitedFederationMode, version, repository, source_url } from 'flavours/glitch/util/initial_state';
 import { signOutLink, securityLink } from 'flavours/glitch/util/backend_links';
 import { logOut } from 'flavours/glitch/util/log_out';
 import { openModal } from 'flavours/glitch/actions/modal';
@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(openModal('CONFIRM', {
       message: intl.formatMessage(messages.logoutMessage),
       confirm: intl.formatMessage(messages.logoutConfirm),
+      closeWhenConfirm: false,
       onConfirm: () => logOut(),
     }));
   },

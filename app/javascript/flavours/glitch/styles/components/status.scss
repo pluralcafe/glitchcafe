@@ -205,6 +205,17 @@
   }
 }
 
+.status__content__edited-label {
+  display: block;
+  cursor: default;
+  font-size: 15px;
+  line-height: 20px;
+  padding: 0;
+  padding-top: 8px;
+  color: $dark-text-color;
+  font-weight: 500;
+}
+
 .status__content__spoiler-link {
   display: inline-block;
   border-radius: 2px;
@@ -1103,6 +1114,7 @@ a.status-card.compact:hover {
     &__account {
       display: flex;
       text-decoration: none;
+      overflow: hidden;
     }
 
     .account__avatar {
