@@ -1350,7 +1350,7 @@
 
 "@node-redis/client@1.0.3":
   version "1.0.3"
-  resolved "https://registry.npmjs.org/@node-redis/client/-/client-1.0.3.tgz"
+  resolved "https://registry.yarnpkg.com/@node-redis/client/-/client-1.0.3.tgz#ece282b7ee07283d744e6ab1fa72f2d47641402c"
   integrity sha512-IXNgOG99PHGL3NxN3/e8J8MuX+H08I+OMNmheGmZBXngE0IntaCQwwrd7NzmiHA+zH3SKHiJ+6k3P7t7XYknMw==
   dependencies:
     cluster-key-slot "1.1.0"
@@ -1360,7 +1360,7 @@
 
 "@node-redis/graph@1.0.0":
   version "1.0.0"
-  resolved "https://registry.npmjs.org/@node-redis/graph/-/graph-1.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/@node-redis/graph/-/graph-1.0.0.tgz#baf8eaac4a400f86ea04d65ec3d65715fd7951ab"
   integrity sha512-mRSo8jEGC0cf+Rm7q8mWMKKKqkn6EAnA9IA2S3JvUv/gaWW/73vil7GLNwion2ihTptAm05I9LkepzfIXUKX5g==
 
 "@node-redis/json@1.0.2":
@@ -5368,9 +5368,9 @@ http-errors@~1.6.2:
     setprototypeof "1.1.0"
     statuses ">= 1.4.0 < 2"
 
-http-link-header@^1.0.3:
+http-link-header@^1.0.4:
   version "1.0.4"
-  resolved "https://registry.npmjs.org/http-link-header/-/http-link-header-1.0.4.tgz"
+  resolved "https://registry.yarnpkg.com/http-link-header/-/http-link-header-1.0.4.tgz#f4efc76c6151ed0ba0d1a2d679798a18854a4a99"
   integrity sha512-Cnv3Q+FF+35avekdnH/ML8dls++tdnSgrvUIWw0YEszrWeLSuw5Iq1vyCVTb5v0rEUgFTy0x4shxXyrO0MDUzw==
 
 http-parser-js@>=0.5.1:
@@ -9000,9 +9000,9 @@ redis-parser@3.0.0:
   dependencies:
     redis-errors "^1.0.0"
 
-redis@^4.0.2:
+redis@^4.0.3:
   version "4.0.3"
-  resolved "https://registry.npmjs.org/redis/-/redis-4.0.3.tgz"
+  resolved "https://registry.yarnpkg.com/redis/-/redis-4.0.3.tgz#f60931175de6f5b5727240a08e58a9ed5cf0f9de"
   integrity sha512-SJMRXvgiQUYN0HaWwWv002J5ZgkhYXOlbLomzcrL3kP42yRNZ8Jx5nvLYhVpgmf10xcDpanFOxxJkphu2eyIFQ==
   dependencies:
     "@node-redis/bloom" "1.0.1"
