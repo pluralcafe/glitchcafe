@@ -2,6 +2,7 @@
 ========
 
 [![Site Status](https://img.shields.io/website?label=plural.cafe&logo=mastodon&url=https%3A%2F%2Fplural.cafe)](https://plural.cafe)
+![License](https://shields.io/github/license/pluralcafe/mastodon)
 
 Mastodon is a **free, open-source social network server** based on **open web protocols** like ActivityPub and OStatus. The social focus of the project is a viable decentralized alternative to commercial social media silos that returns the control of the content distribution channels to the people. The technical focus of the project is a good user interface, a clean REST API for 3rd party apps and robust anti-abuse tools.
 
