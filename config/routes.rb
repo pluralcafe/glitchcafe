@@ -168,7 +168,7 @@ Rails.application.routes.draw do
   end
 
   namespace :disputes do
-    resources :strikes, only: [:show] do
+    resources :strikes, only: [:show, :index] do
       resource :appeal, only: [:create]
     end
   end
@@ -196,7 +196,12 @@ Rails.application.routes.draw do
     resources :domain_allows, only: [:new, :create, :show, :destroy]
     resources :domain_blocks, only: [:new, :create, :show, :destroy, :update, :edit]
 
-    resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
+    resources :email_domain_blocks, only: [:index, :new, :create] do
+      collection do
+        post :batch
+      end
+    end
+
     resources :action_logs, only: [:index]
     resources :warning_presets, except: [:new]
 
@@ -325,6 +330,12 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :statuses, only: [:index] do
+        collection do
+          post :batch
+        end
+      end
+
       namespace :links do
         resources :preview_card_providers, only: [:index], path: :publishers do
           collection do
@@ -447,6 +458,7 @@ Rails.application.routes.draw do
       namespace :trends do
         resources :links, only: [:index]
         resources :tags, only: [:index]
+        resources :statuses, only: [:index]
       end
 
       namespace :emails do
@@ -486,6 +498,7 @@ Rails.application.routes.draw do
         resource :search, only: :show, controller: :search
         resource :lookup, only: :show, controller: :lookup
         resources :relationships, only: :index
+        resources :familiar_followers, only: :index
       end
 
       resources :accounts, only: [:create, :show] do
@@ -554,6 +567,8 @@ Rails.application.routes.draw do
 
         namespace :trends do
           resources :tags, only: [:index]
+          resources :links, only: [:index]
+          resources :statuses, only: [:index]
         end
 
         post :measures, to: 'measures#create'
