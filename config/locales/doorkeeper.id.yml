@@ -60,8 +60,8 @@ id:
       error:
         title: Ada yang error
       new:
-        able_to: Mempunyai akses untuk
-        prompt: Aplikasi %{client_name} meminta akses pada akun anda
+        prompt_html: "%{client_name} meminta izin untuk mengakses akun Anda. Ini adalah aplikasi pihak ketiga. <strong>Jika Anda tidak mempercayainya, Anda boleh tidak mengizinkannya.</strong>"
+        review_permissions: Tinjau izin
         title: Izin diperlukan
       show:
         title: Salin kode autorisasi dan tempelkan pada aplikasi.
@@ -71,10 +71,8 @@ id:
       confirmations:
         revoke: Anda yakin?
       index:
-        application: Aplikasi
-        created_at: Diizinkan pada
-        date_format: "%d-%m-%Y %H:%M:%S"
-        scopes: Scope
+        authorized_at: Diberi hak otorisasi pada %{date}
+        description_html: Ini adalah aplikasi yang dapat mengakses akun Anda menggunakan API. Jika ada aplikasi yang tidak Anda kenal di sini, atau aplikasi yang berperilaku aneh, Anda dapat mencabut hak aksesnya.
         title: Aplikasi yang anda izinkan
     errors:
       messages:
