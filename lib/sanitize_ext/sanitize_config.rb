@@ -134,7 +134,7 @@ class Sanitize
       rel += ['nofollow', 'noopener', 'noreferrer'] unless TagManager.instance.local_url?(node['href'])
 
       if rel.empty?
-        node['rel']&.delete
+        node.remove_attribute('rel')
       else
         node['rel'] = rel.join(' ')
       end
@@ -145,7 +145,7 @@ class Sanitize
 
       node = env[:node]
       if node['target'] != '_blank' && TagManager.instance.local_url?(node['href'])
-        node['target']&.delete
+        node.remove_attribute('target')
       else
         node['target'] = '_blank'
       end
