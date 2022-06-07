@@ -5,6 +5,7 @@
   "column.pins": "Pinned toots",
   "compose_form.direct_message_warning": "This toot will only be sent to the mentioned users.",
   "compose_form.hashtag_warning": "This toot won't be listed under any hashtag as it is unlisted. Only public toots can be searched by hashtag.",
+  "compose_form.publish": "Toot",
   "confirmations.delete.message": "Are you sure you want to delete this toot?",
   "confirmations.redraft.message": "Are you sure you want to delete this toot and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.",
   "embed.instructions": "Embed this toot on your website by copying the code below.",
