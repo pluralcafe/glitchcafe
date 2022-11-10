@@ -6,7 +6,7 @@ echo "Building commit $commit"
 yarn install
 
 if ! systemctl is-active docker &>/dev/null; then
-	timeout 5s systemctl start docker
+	timeout 15s systemctl start docker
 	if [ $? -eq 124 ]; then
 		echo 'Docker start may be hanging... consider manual intervention:'
 		echo '  rm -rf /var/run/docker'
