@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import TextIconButton from './text_icon_button';
 import Overlay from 'react-overlays/lib/Overlay';
-import Motion from 'flavours/glitch/util/optional_motion';
+import Motion from 'flavours/glitch/features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
-import { languages as preloadedLanguages } from 'flavours/glitch/util/initial_state';
-import { loupeIcon, deleteIcon } from 'flavours/glitch/util/icons';
+import { languages as preloadedLanguages } from 'flavours/glitch/initial_state';
+import { loupeIcon, deleteIcon } from 'flavours/glitch/utils/icons';
 import fuzzysort from 'fuzzysort';
 
 const messages = defineMessages({
@@ -51,6 +51,15 @@ class LanguageDropdownMenu extends React.PureComponent {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
     this.setState({ mounted: true });
+
+    // Because of https://github.com/react-bootstrap/react-bootstrap/issues/2614 we need
+    // to wait for a frame before focusing
+    requestAnimationFrame(() => {
+      if (this.node) {
+        const element = this.node.querySelector('input[type="search"]');
+        if (element) element.focus();
+      }
+    });
   }
 
   componentWillUnmount () {
@@ -226,7 +235,7 @@ class LanguageDropdownMenu extends React.PureComponent {
           // react-overlays
           <div className={`language-dropdown__dropdown ${placement}`} style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null }} ref={this.setRef}>
             <div className='emoji-mart-search'>
-              <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} autoFocus />
+              <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
               <button className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}>{!isSearching ? loupeIcon : deleteIcon}</button>
             </div>
 

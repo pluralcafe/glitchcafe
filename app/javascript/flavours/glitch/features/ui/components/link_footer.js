@@ -3,9 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { limitedFederationMode, version, repository, source_url } from 'flavours/glitch/util/initial_state';
-import { signOutLink, securityLink } from 'flavours/glitch/util/backend_links';
-import { logOut } from 'flavours/glitch/util/log_out';
+import { domain, version, source_url, profile_directory as profileDirectory } from 'flavours/glitch/initial_state';
+import { logOut } from 'flavours/glitch/utils/log_out';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { PERMISSION_INVITE_USERS } from 'flavours/glitch/permissions';
 
@@ -43,34 +42,48 @@ class LinkFooter extends React.PureComponent {
     e.stopPropagation();
 
     this.props.onLogout();
- 
+
     return false;
   }
 
   render () {
+    const { signedIn, permissions } = this.context.identity;
+
+    const canInvite = signedIn && ((permissions & PERMISSION_INVITE_USERS) === PERMISSION_INVITE_USERS);
+    const canProfileDirectory = profileDirectory;
+
     return (
-      <div className='getting-started__footer'>
-        <ul>
-          {((this.context.identity.permissions & PERMISSION_INVITE_USERS) === PERMISSION_INVITE_USERS) && <li><a href='/invites' target='_blank'><FormattedMessage id='getting_started.invite' defaultMessage='Invite people' /></a> · </li>}
-          {!!securityLink && <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>}
-          {!limitedFederationMode && <li><a href='/about/more' target='_blank'><FormattedMessage id='navigation_bar.info' defaultMessage='About this server' /></a> · </li>}
-          <li><a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='navigation_bar.apps' defaultMessage='Mobile apps' /></a> · </li>
-          <li><a href='/terms' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a> · </li>
-          <li><a href='/settings/applications' target='_blank'><FormattedMessage id='getting_started.developers' defaultMessage='Developers' /></a> · </li>
-          <li><a href='https://docs.joinmastodon.org' target='_blank'><FormattedMessage id='getting_started.documentation' defaultMessage='Documentation' /></a> · </li>
-          <li><a href={signOutLink} onClick={this.handleLogoutClick}><FormattedMessage id='navigation_bar.logout' defaultMessage='Logout' /></a></li>
-        </ul>
+      <div className='link-footer'>
+        <p>
+          <strong>{domain}</strong>:
+          {' '}
+          <Link key='about' to='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
+          {canInvite && (
+            <>
+              {' · '}
+              <a key='invites' href='/invites' target='_blank'><FormattedMessage id='footer.invite' defaultMessage='Invite people' /></a>
+            </>
+          )}
+          {canProfileDirectory && (
+            <>
+              {' · '}
+              <Link key='directory' to='/directory'><FormattedMessage id='footer.directory' defaultMessage='Profiles directory' /></Link>
+            </>
+          )}
+          {' · '}
+          <Link key='privacy-policy' to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
+        </p>
 
         <p>
-          <FormattedMessage
-            id='getting_started.open_source_notice'
-            defaultMessage='GlitchCafé is free open source software, based on {Glitchsoc} which is a friendly fork of {Mastodon}. You can see our source code on {github} and report bugs, request features, or contribute to the code by emailing {admin}.'
-            values={{
-              github: <span><a href='https://git.starfall.systems/pluralcafe/mastodon/' rel='noopener noreferrer' target='_blank'>our Git repository</a> (v{version})</span>,
-              Glitchsoc: <a href='https://github.com/glitch-soc/mastodon' rel='noopener noreferrer' target='_blank'>glitch-soc/mastodon</a>,
-              Mastodon: <a href='https://github.com/tootsuite/mastodon' rel='noopener noreferrer' target='_blank'>Mastodon</a>,
-			  admin: <a href='mailto://admin@plural.cafe' rel='noopener noreferrer'>admin@plural.cafe</a> }}
-          />
+          <strong>Mastodon</strong>:
+          {' '}
+          <a href='https://joinmastodon.org' target='_blank'><FormattedMessage id='footer.about' defaultMessage='About Mastodon' /></a>
+          {' · '}
+          <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
+          {' · '}
+          <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
+          {' · '}
+          v{version}
         </p>
       </div>
     );

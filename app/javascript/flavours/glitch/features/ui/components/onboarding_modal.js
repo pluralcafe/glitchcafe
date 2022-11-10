@@ -10,7 +10,7 @@ import ComposeForm from 'flavours/glitch/features/compose/components/compose_for
 import DrawerAccount from 'flavours/glitch/features/compose/components/navigation_bar';
 import Search from 'flavours/glitch/features/compose/components/search';
 import ColumnHeader from './column_header';
-import { me, source_url } from 'flavours/glitch/util/initial_state';
+import { me, source_url } from 'flavours/glitch/initial_state';
 
 const noop = () => { };
 
@@ -144,13 +144,13 @@ const PageSix = ({ admin, domain }) => {
       <p>
 		  <FormattedMessage
 		    id='onboarding.page_six.github'
-		    defaultMessage='{domain} runs on GlitchCafé, which is based on {Glitchsoc}, a friendly {fork} of {Mastodon}. Glitchsoc is fully compatible with all Mastodon apps and instances. GlitchCafé is free open-source software. You can view the source code on {github} and report bugs, request features, or contribute to the code by emailing {admin}.'
+		    defaultMessage='{domain} runs on GlitchCafé, which is based on {Glitchsoc}, a friendly {fork} of {Mastodon}. GlitchCafé is fully compatible with all Mastodon apps and instances. GlitchCafé is free open-source software. You can view the source code on {git} and report bugs, request features, or contribute to the code by emailing {admin}.'
 		    values={{
 		      domain,
 		      fork: <a href='https://en.wikipedia.org/wiki/Fork_(software_development)' target='_blank' rel='noopener'>fork</a>,
-	          Mastodon: <a href='https://github.com/tootsuite/mastodon' target='_blank' rel='noopener'>Mastodon</a>,
+	          Mastodon: <a href='https://github.com/mastodon/mastodon' target='_blank' rel='noopener'>Mastodon</a>,
 		      Glitchsoc: <a href='https://github.com/glitch-soc/mastodon' target='_blank' rel='noopener'>GlitchSoc</a>,
-              github: <a href='https://git.starfall.systems/pluralcafe/mastodon/' rel='noopener noreferrer' target='_blank'>our Git repository</a>,
+              git: <a href='https://git.starfall.systems/pluralcafe/mastodon/' rel='noopener noreferrer' target='_blank'>our Git repository</a>,
 			  admin: <a href='mailto://admin@plural.cafe' rel='noopener noreferrer'>admin@plural.cafe</a> }}
 		  />
 	  </p>
