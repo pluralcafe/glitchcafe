@@ -226,6 +226,12 @@
   }
 }
 
+.simple_form .not_recommended {
+  color: lighten($error-red, 12%);
+  background-color: rgba(lighten($error-red, 12%), 0.1);
+  border-color: rgba(lighten($error-red, 12%), 0.5);
+}
+
 .account__header__fields {
   max-width: 100vw;
   padding: 0;
