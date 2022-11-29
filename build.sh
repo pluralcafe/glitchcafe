@@ -16,6 +16,6 @@ if ! systemctl is-active docker &>/dev/null; then
 	fi
 fi
 
-docker build --build-arg SOURCE_COMMIT=$commit --tag pluralcafe/mastodon:edge .
+docker buildx build --build-arg SOURCE_COMMIT=$commit --tag pluralcafe/mastodon:edge .
 
 echo 'Docker image built. Push to Docker Hub with `docker push pluralcafe/mastodon:edge`.'
