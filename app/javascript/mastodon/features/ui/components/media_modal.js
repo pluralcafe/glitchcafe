@@ -91,25 +91,6 @@ class MediaModal extends ImmutablePureComponent {
 
   componentDidMount () {
     window.addEventListener('keydown', this.handleKeyDown, false);
-
-    this._sendBackgroundColor();
-  }
-
-  componentDidUpdate (prevProps, prevState) {
-    if (prevState.index !== this.state.index) {
-      this._sendBackgroundColor();
-    }
-  }
-
-  _sendBackgroundColor () {
-    const { media, onChangeBackgroundColor } = this.props;
-    const index = this.getIndex();
-    const blurhash = media.getIn([index, 'blurhash']);
-
-    if (blurhash) {
-      const backgroundColor = getAverageFromBlurhash(blurhash);
-      onChangeBackgroundColor(backgroundColor);
-    }
   }
 
   componentWillUnmount () {
