@@ -94,6 +94,7 @@ module Mastodon
       :fa,
       :fi,
       :fr,
+      :fy,
       :ga,
       :gd,
       :gl,
